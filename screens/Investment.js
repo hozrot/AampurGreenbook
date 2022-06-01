@@ -9,6 +9,7 @@ import {
   Alert,
   Text,Button
 } from "react-native";
+import {Collapse,CollapseHeader, CollapseBody, AccordionList} from 'accordion-collapse-react-native';
 import { Fontisto } from "@expo/vector-icons";
 // import {
 //   getFirestore,
@@ -32,25 +33,32 @@ import AppButton from "../components/AppButton";
 function Investment(props) {
     return (
       <View style={styles.container}>
+        
       <KeyboardAvoidingView
         keyboardVerticalOffset={100}
         behavior={Platform.OS === "ios" ? "height" : null}
       >
         <ScrollView>
-          
-          <View style={styles.FormElement}>
-            <Text style={{ fontWeight: "bold" ,alignSelf:'center',paddingTop:10}}>
+        <Text style={{ fontWeight: "bold" ,alignSelf:'center',paddingTop:10}}>
               Total Investment
             </Text>
             <Text style={{ fontWeight: "bold" ,alignSelf:'center',fontSize:40,paddingBottom:10}}>
               20,000
             </Text>
 
-            <Text style={{ fontWeight: "bold" ,fontSize:20,paddingBottom:10,color:'purple'}}>
+            <Collapse>
+                <CollapseHeader>
+                  <View>
+                  <Text style={{ fontWeight: "bold" ,fontSize:20,paddingBottom:10,color:'purple'}}>
               Add new +
             </Text>
 
-          {/* <DateItem title="From" date={dateFrom} setDate={setDateFrom} /> */}
+                  </View>
+                </CollapseHeader>
+                <CollapseBody>
+                <View style={styles.FormElement}>
+            
+
             <AppInputText
               icon="account-star-outline"
               placeholder="Investor Name"
@@ -80,7 +88,7 @@ function Investment(props) {
               
             />
             </View>   
-          <View style={styles.Footer}>
+            <View style={styles.Footer}>
             {/* <Button
               mode="contained"
               loading={loading}
@@ -95,6 +103,10 @@ function Investment(props) {
             />
               
           </View>
+                </CollapseBody>
+            </Collapse>
+          
+         
         </ScrollView>
       </KeyboardAvoidingView>
     </View>

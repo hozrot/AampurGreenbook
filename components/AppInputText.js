@@ -33,6 +33,7 @@ const styles = StyleSheet.create({
   },
   icon: {
     marginRight: 10,
+    paddingTop:5,
   },
 });
 export default AppInputText;
