@@ -20,7 +20,8 @@ import { useStates } from "../hooks/useStates";
 import AppButton from "../components/AppButton";
 
 
-const Category = ["Marketing", "Sells", "Transport","Courier","Mango","Others"]
+const Category = ["Marketing", "Sells", "Transport","Courier","Mango","Others"];
+const member = ["Ali", "Badhon", "Fahim","Khokon","Sarvi","Others"]
 
 function Expense(props) {
     return (
@@ -79,6 +80,33 @@ function Expense(props) {
            
               //onChangeText={(text) => setGuestname(text)}
             /> */}
+
+            <View style={styles.dropdown}> 
+              <Icon name={"account-star-outline"} color={"purple"}> </Icon> 
+              <Text style={{ fontWeight: "bold" ,fontSize:15,padding:15, color:'purple'}}>
+              Name
+              </Text>
+            <SelectDropdown
+                      data={member}
+                      defaultValue={""}
+                      onSelect={(selectedItem, index) => {
+                        console.log(selectedItem, index)
+                      }}
+                      defaultButtonText="Select a Person.."
+                      buttonTextAfterSelection={(selectedItem, index) => {
+                        //setMealType(selectedItem)
+                        // text represented after item is selected
+                        // if data array is an array of objects then return selectedItem.property to render after item is selected
+                        return selectedItem
+                      }}
+                      rowTextForSelection={(item, index) => {
+                        // text represented for each item in dropdown
+                        // if data array is an array of objects then return item.property to represent item in dropdown
+                        return item
+                      }}
+                    />
+
+              </View>
               <View style={styles.dropdown}> 
               <Icon name={"bow-arrow"} color={"purple"}> </Icon> 
               <Text style={{ fontWeight: "bold" ,fontSize:15,padding:15, color:'purple'}}>
