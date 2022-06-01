@@ -12,6 +12,7 @@ import {
 import AppInputText from "../components/AppInputText";
 import AppButton from "../components/AppButton";
 import SelectDropdown from 'react-native-select-dropdown';
+import {Collapse,CollapseHeader, CollapseBody, AccordionList} from 'accordion-collapse-react-native';
 
 import DateItem from "../components/DateItem";
 import Icon from "../components/Icon";
@@ -28,17 +29,26 @@ function Sells(props) {
         <ScrollView>
           
          
-            <View style={styles.FormElement}>
+           
             <Text style={{ fontWeight: "bold" ,alignSelf:'center',paddingTop:10}}>
               Total Sells this Season (2022)
             </Text>
             <Text style={{ fontWeight: "bold" ,alignSelf:'center',fontSize:40,paddingBottom:10}}>
               5,000
             </Text>
-          <Text style={{ fontWeight: "bold" ,fontSize:20,padding:10,color:'purple'}}>
-              Add new sells 
+          
+
+            <Collapse>
+                <CollapseHeader>
+                  <View>
+                  <Text style={{ fontWeight: "bold" ,fontSize:20,padding:10,color:'purple'}}>
+              Add new sells ++
 
             </Text>
+                  </View>
+                </CollapseHeader>
+                <CollapseBody>
+                <View style={styles.FormElement}>
           <AppInputText
               icon="calendar"
               placeholder="Date"
@@ -79,6 +89,9 @@ function Sells(props) {
                 ButtonName={"Add"}       
             />
           </View>
+                </CollapseBody>
+            </Collapse>
+            
         </ScrollView>
       </KeyboardAvoidingView>
 

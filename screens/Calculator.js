@@ -39,7 +39,7 @@ function Calculator(props) {
           {/* <DateItem title="From" date={dateFrom} setDate={setDateFrom} /> */}
             
             <AppInputText
-              icon="bullseye-arrow"
+              icon="cash"
               placeholder="Mango Price"
               keyboardType={"phone-pad"}
               //onChangeText={(text) => setDesignation(text)}
