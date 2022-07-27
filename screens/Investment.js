@@ -34,9 +34,9 @@ function Investment(props) {
     return (
       <View style={styles.container}>
         
-      <KeyboardAvoidingView
+        <KeyboardAvoidingView
         keyboardVerticalOffset={100}
-        behavior={Platform.OS === "ios" ? "height" : null}
+        behavior={Platform.OS === "ios" ? "padding" : "height"}
       >
         <ScrollView>
         <Text style={{ fontWeight: "bold" ,alignSelf:'center',paddingTop:10}}>

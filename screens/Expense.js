@@ -7,44 +7,77 @@ import {
   Platform,
   ScrollView,
   Alert,
+  FlatList,
   Text,Button
 } from "react-native";
 import { Fontisto } from "@expo/vector-icons";
 import SelectDropdown from 'react-native-select-dropdown';
+import {Collapse,CollapseHeader, CollapseBody, AccordionList} from 'accordion-collapse-react-native';
 
+import ItemList from '../components/ItemList';
 import DateItem from "../components/DateItem";
 import Icon from "../components/Icon";
 import AppInputText from "../components/AppInputText";
 import colors from "../config/colors";
 import { useStates } from "../hooks/useStates";
 import AppButton from "../components/AppButton";
+import { TouchableOpacity } from 'react-native';
 
-
+const expenselist =[
+  {
+      id: 1,
+      name: 'Ali',
+      category: 'Courier',
+      amount:'2100',
+      date:'22-aug-2022'
+      //image:require('../assets/belt/white.jpg'),
+  },
+  {
+      id: 2,
+      name: 'Fahim',
+      amount:'2500',
+      date:'22-aug-2022',
+      category: 'Transport',
+    
+  },
+  {
+    id: 3,
+    name: 'Fahim',
+    description:'lunch bill',
+    amount:'200',
+    date:'22-aug-2022',
+    category: 'Others',
+  
+},
+]
 const Category = ["Marketing", "Sells", "Transport","Courier","Mango","Others"];
 const member = ["Ali", "Badhon", "Fahim","Khokon","Sarvi","Others"]
 
 function Expense(props) {
     return (
       <View style={styles.container}>
-      <KeyboardAvoidingView
+     <KeyboardAvoidingView
         keyboardVerticalOffset={100}
-        behavior={Platform.OS === "ios" ? "height" : null}
+        behavior={Platform.OS === "ios" ? "padding" : "height"}
       >
-        <ScrollView>
-          
-          <View style={styles.FormElement}>
-            {/* <Text style={{ fontWeight: "bold" ,alignSelf:'center',paddingTop:10}}>
-              Total Investment
+        <ScrollView alwaysBounceVertical={false}>
+        <Text style={{ fontWeight: "bold" ,alignSelf:'center',paddingTop:10}}>
+              Total Expense this Season 2022
             </Text>
             <Text style={{ fontWeight: "bold" ,alignSelf:'center',fontSize:40,paddingBottom:10}}>
-              20,000
-            </Text> */}
-
-            <Text style={{ fontWeight: "bold" ,fontSize:20,padding:10,color:'purple'}}>
-              Season 2022
+              43,000
             </Text>
 
-          {/* <DateItem title="From" date={dateFrom} setDate={setDateFrom} /> */}
+            <Collapse>
+              <CollapseHeader>
+                <View>
+                <Text style={{ fontWeight: "bold" ,fontSize:20,padding:10,color:'purple'}}>
+              Add new Expense ++
+            </Text>
+                </View>
+              </CollapseHeader>
+              <CollapseBody>
+              <View style={styles.FormElement}>
             
             <AppInputText
               icon="bullseye-arrow"
@@ -53,12 +86,6 @@ function Expense(props) {
               //onChangeText={(text) => setDesignation(text)}
             />
 
-            {/* <AppInputText
-              icon="bow-arrow"
-              placeholder=" Purpose"
-              //onChangeText={(text) => setAddress(text)}
-              
-            /> */}
 
             <AppInputText
               icon="calendar"
@@ -68,19 +95,13 @@ function Expense(props) {
              // onChangeText={(text) => setPhone(text)}
               
             />
-            <AppInputText
+            {/* <AppInputText
               icon="account-star-outline"
               placeholder="Name"
            
               //onChangeText={(text) => setGuestname(text)}
             />
-            {/* <AppInputText
-              icon="cart-check"
-              placeholder="Category"
-           
-              //onChangeText={(text) => setGuestname(text)}
-            /> */}
-
+            */}
             <View style={styles.dropdown}> 
               <Icon name={"account-star-outline"} color={"purple"}> </Icon> 
               <Text style={{ fontWeight: "bold" ,fontSize:15,padding:15, color:'purple'}}>
@@ -142,20 +163,35 @@ function Expense(props) {
             />
             </View>   
           <View style={styles.Footer}>
-            {/* <Button
-              mode="contained"
-              loading={loading}
-              onPress={addGuest}
-              style={[styles.button, { backgroundColor: colors.primary }]}
-            >
-              save
-            </Button> */}
+
             <AppButton
                 ButtonName={"Save"}
                
             />
               
           </View>
+              </CollapseBody>
+          </Collapse>
+
+          <FlatList 
+          alwaysBounceVertical={false}
+         
+            data={expenselist}
+            keyExtractor={expenselist=>expenselist.id.toString()}
+            renderItem={({item})=>
+            <ItemList
+                  name={item.name}
+                  description={item.description}
+                  amount={item.amount}
+                  category={item.category}
+                  date={item.date}
+                  // onPress={()=> navigation.navigate("VipDetails",item)}
+                  />
+              }/>
+
+         <View>
+
+         </View>
         </ScrollView>
       </KeyboardAvoidingView>
     </View>
@@ -184,7 +220,7 @@ const styles = StyleSheet.create({
   
   Footer: {
     margin: 10,
-    height:120
+    
   },
 });
 
